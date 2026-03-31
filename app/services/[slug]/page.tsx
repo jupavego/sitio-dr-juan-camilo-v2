@@ -1,4 +1,5 @@
 import ServiceDetailView from "@/components/services/service-detail-view";
+import ContactSection from "@/components/home/contact-section";
 
 export default async function ServiceDetailPage({
   params,
@@ -7,5 +8,10 @@ export default async function ServiceDetailPage({
 }) {
   const { slug } = await params;
 
-  return <ServiceDetailView slug={slug} />;
+  return (
+    <>
+      <ServiceDetailView slug={slug} />
+      <ContactSection />
+    </>
+  );
 }
