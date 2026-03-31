@@ -39,7 +39,7 @@ export default function ContactSection() {
       id="contacto"
       className="mx-auto max-w-5xl scroll-mt-24 px-6 pt-14 pb-16 lg:px-10"
     >
-      <Reveal duration={830} distance={28}>
+      <Reveal duration={830} distance={18}>
         <div>
           <p className="text-[18px] font-semibold uppercase tracking-[0.28em] text-[#849B9D]">
             {content.intro}

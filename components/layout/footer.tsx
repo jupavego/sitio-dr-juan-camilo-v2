@@ -117,11 +117,11 @@ export default function Footer() {
           </ul>
 
           <div className="mt-6 flex flex-wrap gap-3">
-            <a href="#" className={socialLinkClass}>
+            <a href="https://www.instagram.com/oftalmojc/" className={socialLinkClass}>
               {content.social.instagram}
             </a>
 
-            <a href="#" className={socialLinkClass}>
+            <a href="https://www.linkedin.com/in/juan-camilo-cadavid-usuga-b09350117/" className={socialLinkClass}>
               {content.social.linkedin}
             </a>
 
