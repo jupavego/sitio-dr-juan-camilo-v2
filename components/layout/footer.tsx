@@ -4,39 +4,15 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useLanguage } from "@/components/providers/language-provider";
 import { getLayoutContent } from "@/lib/data/layout-content";
+import {
+  handleSectionNavigation,
+  resolveSectionHref,
+} from "@/lib/navigation/section-links";
 
 export default function Footer() {
   const { locale } = useLanguage();
   const pathname = usePathname();
   const content = getLayoutContent(locale).footer;
-
-  const isHome = pathname === "/";
-
-  const resolveHref = (href: string) => {
-    if (!href.startsWith("#")) return href;
-    return isHome ? href : `/${href}`;
-  };
-
-  const handleSectionNavigation = (
-    event: React.MouseEvent<HTMLAnchorElement>,
-    href: string
-  ) => {
-    if (!href.startsWith("#") || !isHome) return;
-
-    event.preventDefault();
-
-    const id = href.slice(1);
-    const element = document.getElementById(id);
-
-    if (!element) return;
-
-    element.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
-
-    window.history.replaceState(null, "", `#${id}`);
-  };
 
   const navLinkClass = "transition hover:text-white";
   const socialLinkClass =
@@ -68,8 +44,10 @@ export default function Footer() {
           <ul className="mt-4 space-y-3 text-sm text-white/80">
             <li>
               <Link
-                href={resolveHref("#inicio")}
-                onClick={(event) => handleSectionNavigation(event, "#inicio")}
+                href={resolveSectionHref(pathname, "#inicio")}
+                onClick={(event) =>
+                  handleSectionNavigation(event, pathname, "#inicio")
+                }
                 className={navLinkClass}
               >
                 {content.nav.home}
@@ -78,9 +56,9 @@ export default function Footer() {
 
             <li>
               <Link
-                href={resolveHref("#especialidades")}
+                href={resolveSectionHref(pathname, "#especialidades")}
                 onClick={(event) =>
-                  handleSectionNavigation(event, "#especialidades")
+                  handleSectionNavigation(event, pathname, "#especialidades")
                 }
                 className={navLinkClass}
               >
@@ -90,9 +68,9 @@ export default function Footer() {
 
             <li>
               <Link
-                href={resolveHref("#investigacion")}
+                href={resolveSectionHref(pathname, "#investigacion")}
                 onClick={(event) =>
-                  handleSectionNavigation(event, "#investigacion")
+                  handleSectionNavigation(event, pathname, "#investigacion")
                 }
                 className={navLinkClass}
               >
@@ -102,8 +80,10 @@ export default function Footer() {
 
             <li>
               <Link
-                href={resolveHref("#doctor")}
-                onClick={(event) => handleSectionNavigation(event, "#doctor")}
+                href={resolveSectionHref(pathname, "#doctor")}
+                onClick={(event) =>
+                  handleSectionNavigation(event, pathname, "#doctor")
+                }
                 className={navLinkClass}
               >
                 {content.nav.doctor}
@@ -112,8 +92,10 @@ export default function Footer() {
 
             <li>
               <Link
-                href={resolveHref("#contacto")}
-                onClick={(event) => handleSectionNavigation(event, "#contacto")}
+                href={resolveSectionHref(pathname, "#contacto")}
+                onClick={(event) =>
+                  handleSectionNavigation(event, pathname, "#contacto")
+                }
                 className={navLinkClass}
               >
                 {content.nav.contact}

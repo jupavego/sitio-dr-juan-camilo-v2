@@ -2,12 +2,16 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState, type MouseEvent } from "react";
+import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { Montserrat } from "next/font/google";
 import { useLanguage } from "@/components/providers/language-provider";
 import LanguageSwitcher from "@/components/ui/language-switcher";
 import { getLayoutContent } from "@/lib/data/layout-content";
+import {
+  handleSectionNavigation,
+  resolveSectionHref,
+} from "@/lib/navigation/section-links";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -29,35 +33,8 @@ export default function Header() {
 
   const content = getLayoutContent(locale).header;
   const navItems = content.nav;
-  const isHome = pathname === "/";
 
   const closeMenu = () => setMenuOpen(false);
-
-  const getHref = (href?: string) => {
-    if (!href) return "/";
-    return href.startsWith("#") && !isHome ? `/${href}` : href;
-  };
-
-  const handleNavigation = (
-    event: MouseEvent<HTMLAnchorElement>,
-    href?: string
-  ) => {
-    closeMenu();
-
-    if (!href?.startsWith("#") || !isHome) return;
-
-    event.preventDefault();
-
-    const element = document.getElementById(href.slice(1));
-    if (!element) return;
-
-    element.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
-
-    window.history.replaceState(null, "", href);
-  };
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -117,8 +94,10 @@ export default function Header() {
             item.children?.length ? (
               <div key={item.label} className="group relative">
                 <Link
-                  href={getHref(item.href)}
-                  onClick={(event) => handleNavigation(event, item.href)}
+                  href={resolveSectionHref(pathname, item.href)}
+                  onClick={(event) =>
+                    handleSectionNavigation(event, pathname, item.href, closeMenu)
+                  }
                   className="flex items-center rounded-full px-4 py-2 text-sm font-medium leading-none text-[#2F3A43] transition hover:bg-[#EEF3F2] hover:text-[#2F3A43]"
                 >
                   <span className="leading-none">{item.label}</span>
@@ -132,8 +111,15 @@ export default function Header() {
                     {item.children.map((child) => (
                       <Link
                         key={child.label}
-                        href={getHref(child.href)}
-                        onClick={(event) => handleNavigation(event, child.href)}
+                        href={resolveSectionHref(pathname, child.href)}
+                        onClick={(event) =>
+                          handleSectionNavigation(
+                            event,
+                            pathname,
+                            child.href,
+                            closeMenu
+                          )
+                        }
                         className="block rounded-[1rem] px-4 py-3 text-sm text-[#44535B] transition hover:bg-[#F3F7F6] hover:text-[#2F3A43]"
                       >
                         {child.label}
@@ -145,8 +131,10 @@ export default function Header() {
             ) : (
               <Link
                 key={item.label}
-                href={getHref(item.href)}
-                onClick={(event) => handleNavigation(event, item.href)}
+                href={resolveSectionHref(pathname, item.href)}
+                onClick={(event) =>
+                  handleSectionNavigation(event, pathname, item.href, closeMenu)
+                }
                 className={desktopLinkClass}
               >
                 {item.label}
@@ -159,8 +147,10 @@ export default function Header() {
           <LanguageSwitcher />
 
           <Link
-            href={getHref("#contacto")}
-            onClick={(event) => handleNavigation(event, "#contacto")}
+            href={resolveSectionHref(pathname, "#contacto")}
+            onClick={(event) =>
+              handleSectionNavigation(event, pathname, "#contacto", closeMenu)
+            }
             className="rounded-full bg-[#D7CCAE] px-5 py-2.5 text-sm font-medium text-[#2F3A43] transition hover:bg-[#CBBE98]"
           >
             {content.cta}
@@ -226,8 +216,15 @@ export default function Header() {
                 {item.children?.length ? (
                   <div className="border-b border-[#EEF2F2] py-3.5">
                     <Link
-                      href={getHref(item.href)}
-                      onClick={(event) => handleNavigation(event, item.href)}
+                      href={resolveSectionHref(pathname, item.href)}
+                      onClick={(event) =>
+                        handleSectionNavigation(
+                          event,
+                          pathname,
+                          item.href,
+                          closeMenu
+                        )
+                      }
                       className="block text-sm font-medium text-[#2F3A43] transition hover:text-[#2F3A43]"
                     >
                       {item.label}
@@ -237,9 +234,14 @@ export default function Header() {
                       {item.children.map((child) => (
                         <Link
                           key={child.label}
-                          href={getHref(child.href)}
+                          href={resolveSectionHref(pathname, child.href)}
                           onClick={(event) =>
-                            handleNavigation(event, child.href)
+                            handleSectionNavigation(
+                              event,
+                              pathname,
+                              child.href,
+                              closeMenu
+                            )
                           }
                           className="text-sm text-[#5F6F76] transition hover:text-[#2F3A43]"
                         >
@@ -250,8 +252,15 @@ export default function Header() {
                   </div>
                 ) : (
                   <Link
-                    href={getHref(item.href)}
-                    onClick={(event) => handleNavigation(event, item.href)}
+                    href={resolveSectionHref(pathname, item.href)}
+                    onClick={(event) =>
+                      handleSectionNavigation(
+                        event,
+                        pathname,
+                        item.href,
+                        closeMenu
+                      )
+                    }
                     className={mobileLinkClass}
                   >
                     {item.label}
@@ -261,8 +270,10 @@ export default function Header() {
             ))}
 
             <Link
-              href={getHref("#contacto")}
-              onClick={(event) => handleNavigation(event, "#contacto")}
+              href={resolveSectionHref(pathname, "#contacto")}
+              onClick={(event) =>
+                handleSectionNavigation(event, pathname, "#contacto", closeMenu)
+              }
               className={`mt-4 inline-flex w-full items-center justify-center rounded-full bg-[#D7CCAE] px-5 py-3 text-sm font-medium text-[#2F3A43] transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] hover:bg-[#CBBE98] ${
                 menuOpen
                   ? "translate-x-0 opacity-100"
