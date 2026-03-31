@@ -12,7 +12,7 @@ export default function Hero() {
     <section id="inicio" className="relative overflow-hidden">
       <div className="mx-auto grid max-w-7xl gap-10 px-6 pt-0 pb-20 lg:grid-cols-2 lg:px-10 lg:pt-5 lg:pb-20">
         <div className="flex flex-col justify-center">
-          <Reveal immediate duration={820} distance={24} direction="left">
+          <Reveal immediate duration={820} distance={34} direction="left">
             <div>
               <p className="text-[20px] font-semibold uppercase tracking-[0.28em] text-[#9FB2B5]">
                 {content.eyebrow}
@@ -36,7 +36,7 @@ export default function Hero() {
             immediate
             delay={120}
             duration={780}
-            distance={20}
+            distance={30}
             direction="left"
           >
             <div className="mt-8 flex flex-wrap gap-4">
@@ -56,7 +56,7 @@ export default function Hero() {
           </Reveal>
         </div>
 
-        <Reveal immediate delay={140} duration={900} distance={24}>
+        <Reveal immediate delay={140} duration={900} distance={34}>
           <div className="relative min-h-[440px] overflow-hidden rounded-[2rem] bg-[radial-gradient(circle_at_top_left,_rgba(255,255,255,0.96),_rgba(236,241,239,0.92),_rgba(159,178,181,0.26))] lg:min-h-[580px]">
             <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(47,58,67,0.06),rgba(255,255,255,0.18))]" />
 

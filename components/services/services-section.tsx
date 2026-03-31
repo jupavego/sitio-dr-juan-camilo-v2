@@ -18,7 +18,7 @@ export default function ServicesSection() {
       id="especialidades"
       className="mx-auto max-w-7xl scroll-mt-24 px-6 py-24 lg:px-10"
     >
-      <Reveal duration={420} distance={18}>
+      <Reveal duration={820} distance={28}>
         <div className="max-w-3xl">
           <p className="text-[18px] font-semibold uppercase tracking-[0.28em] text-[#849B9D]">
             {sectionContent.intro}
@@ -38,9 +38,9 @@ export default function ServicesSection() {
         {services.map((service, index) => (
           <Reveal
             key={service.slug}
-            duration={450}
+            duration={850}
             delay={index * 40}
-            distance={20}
+            distance={30}
           >
             <Link
               href={`/services/${service.slug}`}

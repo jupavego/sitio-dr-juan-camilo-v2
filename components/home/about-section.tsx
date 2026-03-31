@@ -12,7 +12,7 @@ export default function AboutSection() {
     <section id="doctor" className="bg-[#24323d] text-white">
       <div className="mx-auto grid max-w-7xl gap-10 px-6 py-24 lg:grid-cols-[1.1fr_0.9fr] lg:px-10">
         <div className="flex flex-col justify-center">
-          <Reveal duration={420} distance={18}>
+          <Reveal duration={820} distance={28}>
             <div>
               <p className="font-semibold uppercase tracking-[0.28em] text-[#9FE1FF]">
                 {content.intro}
@@ -24,7 +24,7 @@ export default function AboutSection() {
             </div>
           </Reveal>
 
-          <Reveal delay={40} duration={460} distance={20}>
+          <Reveal delay={40} duration={860} distance={30}>
             <div>
               <p className="mt-6 max-w-2xl text-base leading-7 text-slate-300">
                 {content.paragraph1}
@@ -64,7 +64,7 @@ export default function AboutSection() {
           </Reveal>
         </div>
 
-        <Reveal delay={70} duration={480} distance={22}>
+        <Reveal delay={70} duration={880} distance={32}>
           <div className="relative min-h-[360px] overflow-hidden rounded-[2rem] border border-white/10 bg-[linear-gradient(135deg,rgba(255,255,255,0.10),rgba(148,163,184,0.08))] p-8">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.14),transparent_58%)]" />
 

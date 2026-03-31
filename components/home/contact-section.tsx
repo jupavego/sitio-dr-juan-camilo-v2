@@ -39,7 +39,7 @@ export default function ContactSection() {
       id="contacto"
       className="mx-auto max-w-5xl scroll-mt-24 px-6 pt-14 pb-16 lg:px-10"
     >
-      <Reveal duration={430} distance={18}>
+      <Reveal duration={830} distance={28}>
         <div>
           <p className="text-[18px] font-semibold uppercase tracking-[0.28em] text-[#849B9D]">
             {content.intro}
@@ -142,7 +142,7 @@ export default function ContactSection() {
               </div>
 
               
-              <Reveal duration={470} delay={40} distance={20}>
+              <Reveal duration={870} delay={40} distance={30}>
                 <div
                   ref={mapRef}
                   className="overflow-hidden rounded-[1.35rem] border border-slate-200 bg-white shadow-sm"

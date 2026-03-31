@@ -11,7 +11,7 @@ export default function TestimonialsSection() {
   return (
     <section id="testimonios" className="bg-slate-50">
       <div className="mx-auto max-w-7xl px-6 py-24 lg:px-10">
-        <Reveal duration={420} distance={18}>
+        <Reveal duration={820} distance={28}>
           <div className="max-w-3xl">
             <p className="text-[18px] font-medium uppercase tracking-[0.28em] text-[#849B9D]">
               {content.intro}
@@ -31,9 +31,9 @@ export default function TestimonialsSection() {
           {content.stats.map((item, index) => (
             <Reveal
               key={item}
-              duration={440}
+              duration={840}
               delay={index * 40}
-              distance={20}
+              distance={30}
             >
               <div className="rounded-[1.6rem] border border-slate-200 bg-white p-6 text-sm leading-6 text-slate-700 shadow-[0_8px_24px_rgba(15,23,42,0.04)]">
                 {item}
@@ -46,9 +46,9 @@ export default function TestimonialsSection() {
           {content.testimonials.map((item, index) => (
             <Reveal
               key={item.name}
-              duration={460}
+              duration={860}
               delay={index * 50}
-              distance={22}
+              distance={32}
             >
               <article className="rounded-[1.8rem] border border-slate-200 bg-white p-7 shadow-[0_8px_30px_rgba(15,23,42,0.04)]">
                 <p className="text-4xl leading-none text-slate-300">“</p>
